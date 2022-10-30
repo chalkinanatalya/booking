@@ -14,14 +14,14 @@ export const getRandomFloat = (max: number, min: number, decimals: number): numb
   throw new Error('Incorrect input');
 }
 
-export const getRandomArrayElement = (elements: string[], ): string => {
-  return elements[getRandomInt(elements.length, 0)];
+export const getRandomArrayElement = (elements: string[],): string => {
+  return elements[getRandomInt(elements.length - 1, 0)];
 }
 
 export const getRandomArrayElements = (elements: string[]): string[] => {
   const array: string[] = [];
 
-  for(let  i = 0; i < elements.length; i++) {
+  for (let i = 0; i < elements.length; i++) {
     const indexOfEl = getRandomInt(elements.length - 1, 0);
     const el = elements[indexOfEl];
 
