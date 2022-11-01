@@ -1,8 +1,5 @@
-import { getRandomFloat, getRandomInt, getRandomArrayElements, getRandomArrayElement } from './utils/common';
-import { TYPE, CHECKTIME, FEATURES, PHOTOS, ADVCOUNT, TITLES, DESCRIPTIONS } from './constants/constants';
-
-
-
+import { getRandomFloat, getRandomInt, getRandomArrayElements, getRandomArrayElement } from '../utils/common';
+import { TYPE, CHECKTIME, FEATURES, PHOTOS, ADVCOUNT, TITLES, DESCRIPTIONS } from '../constants/constants';
 
 export const addAdvertisement = () => {
   const advertisement = [];
@@ -34,5 +31,3 @@ export const addAdvertisement = () => {
 
   return advertisement;
 }
-
-addAdvertisement();
