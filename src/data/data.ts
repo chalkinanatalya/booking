@@ -1,7 +1,7 @@
 import { getRandomFloat, getRandomInt, getRandomArrayElements, getRandomArrayElement } from '../utils/common';
 import { TYPE, CHECKTIME, FEATURES, PHOTOS, ADVCOUNT, TITLES, DESCRIPTIONS } from '../constants/constants';
 
-type AdvertisedType = {
+export type AdvertisedType = {
   author: {
     avatar?: string;
   },
