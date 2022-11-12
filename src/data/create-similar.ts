@@ -18,23 +18,46 @@ export const renderOffer = ({ author, offer }: AdvertisedType): HTMLElement => {
   addvertisementElement.querySelector('.popup__description').textContent = offer.description;
 
   const type = offer.type;
+  const typeSelector = addvertisementElement.querySelector('.popup__type');
   switch (type) {
-    case 'palace': addvertisementElement.querySelector('.popup__type').textContent = 'Дворец';
+    case 'palace':
+      typeSelector.textContent = 'Дворец';
       break;
-    case 'flat': addvertisementElement.querySelector('.popup__type').textContent = 'Квартира';
+    case 'flat':
+      typeSelector.textContent = 'Квартира';
       break;
-    case 'house': addvertisementElement.querySelector('.popup__type').textContent = 'Дом';
+    case 'house': typeSelector.textContent = 'Дом';
       break;
-    case 'bungalow': addvertisementElement.querySelector('.popup__type').textContent = 'Бунгало';
+    case 'bungalow': typeSelector.textContent = 'Бунгало';
       break;
   }
 
 
   const rooms = offer.rooms;
-  addvertisementElement.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
+  const guests = offer.guests;
+  let symbRooms = 'комнат';
+  let symbGuests = 'гост';
+
+  switch (rooms % 10) {
+    case 1: symbRooms += 'а';
+      break;
+    case 2:
+    case 3:
+    case 4:
+      symbRooms += 'ы';
+      break;
+  }
+
+  switch (guests % 10) {
+    case 1: symbGuests += 'я';
+      break;
+    default: symbGuests += 'ей'
+      break;
+  }
+  addvertisementElement.querySelector('.popup__text--capacity').textContent = `${offer.rooms} ${symbRooms} для ${offer.guests} ${symbGuests}`;
 
 
-
+  offer.checkin = offer.checkout;
   addvertisementElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
 
 

@@ -34,7 +34,7 @@ export const addAdvertisementCard = (): AdvertisedType => {
     offer: {
       title: getRandomArrayElement(TITLES),
       address: `${getRandomFloat(60, 50, 6)}, ${getRandomFloat(20, 10, 6)}`,
-      price: Math.floor(Math.random() * 100),
+      price: Math.floor(Math.random() * 100_000),
       type: getRandomArrayElement(TYPE),
       rooms: Math.floor(Math.random() * 10),
       guests: Math.floor(Math.random() * 10),
