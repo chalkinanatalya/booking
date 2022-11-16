@@ -3,6 +3,14 @@ const price = document.querySelector('#price') as HTMLInputElement;
 const type = document.querySelector('#type') as HTMLInputElement;
 const timeIn = document.querySelector('#timein') as HTMLInputElement;
 const timeOut = document.querySelector('#timeout') as HTMLInputElement;
+const adForm = document.querySelector('.ad-form');
+
+
+
+const buttons = Array.from(adForm.children).forEach(button => {
+  button.classList.add('ad-form--disabled');
+  button.setAttribute('disabled', '');
+});
 
 price?.addEventListener('click', () => {
   switch (type.value) {
@@ -38,4 +46,6 @@ const timeLeave = (time1: HTMLInputElement, time2: HTMLInputElement): void => {
 
 timeLeave(timeIn, timeOut);
 timeLeave(timeOut, timeIn);
+
+
 
