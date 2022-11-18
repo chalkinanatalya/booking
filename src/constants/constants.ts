@@ -15,3 +15,6 @@ export const DESCRIPTIONS = [
   'Бесплатный пляж',
   'Недавно сделан ремонт'
 ];
+
+export const LATITUDE = 35.6762;
+export const LONGITUDE = 139.6503;

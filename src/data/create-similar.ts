@@ -91,7 +91,7 @@ export const renderOffers = (): void => {
       similarListFragment.appendChild(renderOffer(offer));
     }
   });
-  mapCanvas.appendChild(similarListFragment);
+  // mapCanvas.appendChild(similarListFragment);
 }
 
 
