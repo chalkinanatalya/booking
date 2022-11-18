@@ -30,6 +30,8 @@ export const renderOffer = ({ author, offer }: AdvertisedType): HTMLElement => {
       break;
     case 'bungalow': typeSelector.textContent = 'Бунгало';
       break;
+    case 'hotel': typeSelector.textContent = 'Отель';
+      break;
   }
 
 
