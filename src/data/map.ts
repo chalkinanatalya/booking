@@ -1,16 +1,33 @@
 import L from 'leaflet';
+import { LATITUDE, LONGITUDE } from '../constants/constants';
+import { addFormCoordinate } from './form';
 
 const mapFilters = document.querySelector('.map__filters');
 
-const mapContent = Array.from(mapFilters.children).forEach(button => {
-  button.setAttribute('disabled', '');
+
+const disableFilterHandler = (): void => {
+  Array.from(mapFilters.children).forEach(button => {
+    button.setAttribute('disabled', '');
+  });
+}
+
+const enableFilterHandler = (): void => {
+  Array.from(mapFilters.children).forEach(button => {
+    button.removeAttribute('disabled');
+  });
+}
+
+disableFilterHandler();
+
+window.addEventListener('load', () => {
+  enableFilterHandler();
 });
 
 
-const map = L.map('map-canvas')
+const map: L.Map = L.map('map-canvas')
   .setView({
-    lat: 35.6762,
-    lng: 139.6503,
+    lat: LATITUDE,
+    lng: LONGITUDE,
   }, 10);
 
 L.tileLayer(
@@ -20,16 +37,16 @@ L.tileLayer(
   },
 ).addTo(map);
 
-const mainPinIcon = L.icon({
+const mainPinIcon: L.Icon<L.IconOptions> = L.icon({
   iconUrl: '../../leaflet/img/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
 
-const mainPinMarker = L.marker(
+const mainPinMarker: L.Marker<any> = L.marker(
   {
-    lat: 35.6762,
-    lng: 139.6503,
+    lat: LATITUDE,
+    lng: LONGITUDE,
   },
   {
     draggable: true,
@@ -38,3 +55,5 @@ const mainPinMarker = L.marker(
 );
 
 mainPinMarker.addTo(map);
+
+addFormCoordinate(mainPinMarker);
