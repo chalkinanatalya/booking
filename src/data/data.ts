@@ -19,8 +19,8 @@ export type AdvertisedType = {
     description?: string,
     photos?: string[],
     location?: {
-      x: number,
-      y: number
+      lat: number,
+      lng: number
     }
   }
 }
@@ -44,8 +44,8 @@ export const addAdvertisementCard = (): AdvertisedType => {
       description: getRandomArrayElement(DESCRIPTIONS),
       photos: getRandomArrayElements(PHOTOS),
       location: {
-        x: getRandomFloat(35.70000, 35.65000, 5),
-        y: getRandomFloat(139.80000, 139.70000, 5)
+        lat: getRandomFloat(35.70000, 35.65000, 5),
+        lng: getRandomFloat(139.80000, 139.70000, 5)
       }
     }
   }

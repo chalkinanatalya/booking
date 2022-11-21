@@ -1,5 +1,4 @@
 import { addAdvertisement } from './data';
-// import { addAdvertisementCard } from './data';
 import { AdvertisedType } from 'data';
 
 const templateAdvertisement: HTMLTemplateElement | null = document.querySelector('#card');
@@ -81,17 +80,15 @@ export const renderOffer = ({ author, offer }: AdvertisedType): HTMLElement => {
   return addvertisementElement;
 }
 
-const similarAdvertisement = addAdvertisement();
+// export const renderOffers = (similarAdvertisement: AdvertisedType[]): void => {
+//   const similarListFragment = document.createDocumentFragment();
 
-export const renderOffers = (): void => {
-  const similarListFragment = document.createDocumentFragment();
-
-  similarAdvertisement.forEach((offer: AdvertisedType) => {
-    if (advertisement instanceof HTMLElement) {
-      similarListFragment.appendChild(renderOffer(offer));
-    }
-  });
-  // mapCanvas.appendChild(similarListFragment);
-}
+//   similarAdvertisement.forEach((offer: AdvertisedType) => {
+//     if (advertisement instanceof HTMLElement) {
+//       similarListFragment.appendChild(renderOffer(offer));
+//     }
+//   });
+//   templateAdvertisement.appendChild(similarListFragment);
+// }
 
 
