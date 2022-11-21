@@ -1,6 +1,8 @@
 import L from 'leaflet';
 import { LATITUDE, LONGITUDE } from '../constants/constants';
 import { addFormCoordinate } from './form';
+import { renderOffer, renderOffers } from './create-similar';
+import { addAdvertisement } from './data';
 
 const mapFilters = document.querySelector('.map__filters');
 
@@ -42,6 +44,36 @@ const mainPinIcon: L.Icon<L.IconOptions> = L.icon({
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
+
+const points = addAdvertisement();
+renderOffers(points);
+
+points.forEach((point) => {
+  const { lat, lng } = point.offer.location;
+
+  const icon = L.icon({
+    iconUrl: '../../leaflet/img/pin.svg',
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+  });
+
+  const marker = L.marker(
+    {
+      lat,
+      lng,
+    },
+    {
+      icon,
+    },
+  );
+
+  marker
+    .addTo(map)
+    .bindPopup(
+      renderOffer(point),
+    );
+});
+
 
 const mainPinMarker: L.Marker<any> = L.marker(
   {
