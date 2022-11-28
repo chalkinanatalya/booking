@@ -1,7 +1,7 @@
 import L from 'leaflet';
 import { LATITUDE, LONGITUDE } from '../constants/constants';
 import { addFormCoordinate } from './form';
-import { renderOffer, renderOffers } from './create-similar';
+import { renderOffer } from './create-similar';
 import { addAdvertisement } from './data';
 
 const mapFilters = document.querySelector('.map__filters');
@@ -46,7 +46,6 @@ const mainPinIcon: L.Icon<L.IconOptions> = L.icon({
 });
 
 const points = addAdvertisement();
-renderOffers(points);
 
 points.forEach((point) => {
   const { lat, lng } = point.offer.location;

@@ -7,6 +7,8 @@ const timeIn = document.querySelector('#timein') as HTMLInputElement;
 const timeOut = document.querySelector('#timeout') as HTMLInputElement;
 const adForm = document.querySelector('.ad-form');
 const address = document.querySelector('#address') as HTMLInputElement;
+const roomNumber = document.querySelector('#room_number') as HTMLInputElement;
+const capacity = document.querySelector('#capacity') as HTMLInputElement;
 
 
 const disableElementsHandler = (): void => {
@@ -77,6 +79,22 @@ export const addFormCoordinate = (marker: L.Marker<any>): void => {
 
     address.value = inputElem;
   });
-
-
 }
+
+roomNumber.addEventListener('change', () => {
+  Array.from(capacity.children).forEach(guest => {
+    guest.setAttribute('disabled', '')
+  });
+
+  if (roomNumber.value !== '100') {
+    capacity.value = roomNumber.value;
+
+    for (let i = 1; i <= Number(roomNumber.value); i++) {
+      capacity.querySelector(`[name='${i}']`).removeAttribute('disabled');
+    }
+  } else {
+    capacity.value = '0';
+    capacity.querySelector('[name="0"]').removeAttribute('disabled');
+  }
+})
+
