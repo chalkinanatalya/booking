@@ -4,7 +4,7 @@ import { addFormCoordinate } from './form';
 import { renderOffer } from './create-similar';
 import { addAdvertisement } from './data';
 
-const mapFilters = document.querySelector('.map__filters');
+const mapFilters = document.querySelector('.map__filters') as HTMLFormElement;
 
 
 const disableFilterHandler = (): void => {
@@ -48,30 +48,33 @@ const mainPinIcon: L.Icon<L.IconOptions> = L.icon({
 const points = addAdvertisement();
 
 points.forEach((point) => {
-  const { lat, lng } = point.offer.location;
+  if (point.offer.location) {
+    const { lat, lng } = point.offer.location;
 
-  const icon = L.icon({
-    iconUrl: '../../leaflet/img/pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-  });
+    const icon = L.icon({
+      iconUrl: '../../leaflet/img/pin.svg',
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+    });
 
-  const marker = L.marker(
-    {
-      lat,
-      lng,
-    },
-    {
-      icon,
-    },
-  );
-
-  marker
-    .addTo(map)
-    .bindPopup(
-      renderOffer(point),
+    const marker = L.marker(
+      {
+        lat,
+        lng,
+      },
+      {
+        icon,
+      },
     );
+
+    marker
+      .addTo(map)
+      .bindPopup(
+        renderOffer(point),
+      );
+  }
 });
+
 
 
 const mainPinMarker: L.Marker<any> = L.marker(

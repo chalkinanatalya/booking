@@ -5,7 +5,7 @@ const price = document.querySelector('#price') as HTMLInputElement;
 const type = document.querySelector('#type') as HTMLInputElement;
 const timeIn = document.querySelector('#timein') as HTMLInputElement;
 const timeOut = document.querySelector('#timeout') as HTMLInputElement;
-const adForm = document.querySelector('.ad-form');
+const adForm = document.querySelector('.ad-form') as HTMLFormElement;
 const address = document.querySelector('#address') as HTMLInputElement;
 const roomNumber = document.querySelector('#room_number') as HTMLInputElement;
 const capacity = document.querySelector('#capacity') as HTMLInputElement;
@@ -90,11 +90,11 @@ roomNumber.addEventListener('change', () => {
     capacity.value = roomNumber.value;
 
     for (let i = 1; i <= Number(roomNumber.value); i++) {
-      capacity.querySelector(`[name='${i}']`).removeAttribute('disabled');
+      capacity.querySelector(`[name='${i}']`)?.removeAttribute('disabled');
     }
   } else {
     capacity.value = '0';
-    capacity.querySelector('[name="0"]').removeAttribute('disabled');
+    capacity.querySelector('[name="0"]')?.removeAttribute('disabled');
   }
 })
 
