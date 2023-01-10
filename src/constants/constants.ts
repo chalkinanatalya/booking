@@ -18,3 +18,6 @@ export const DESCRIPTIONS = [
 
 export const LATITUDE = 35.6762;
 export const LONGITUDE = 139.6503;
+
+export const MIN_TITLE_LENGTH = 30;
+export const MAX_TITLE_LENGTH = 100;

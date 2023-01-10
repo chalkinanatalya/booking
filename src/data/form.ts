@@ -1,5 +1,5 @@
 import { LeafletEvent } from "leaflet";
-import { LATITUDE, LONGITUDE } from "../constants/constants";
+import { LATITUDE, LONGITUDE, MIN_TITLE_LENGTH, MAX_TITLE_LENGTH } from '../constants/constants';
 
 const price = document.querySelector('#price') as HTMLInputElement;
 const type = document.querySelector('#type') as HTMLInputElement;
@@ -9,8 +9,9 @@ const adForm = document.querySelector('.ad-form') as HTMLFormElement;
 const address = document.querySelector('#address') as HTMLInputElement;
 const roomNumber = document.querySelector('#room_number') as HTMLInputElement;
 const capacity = document.querySelector('#capacity') as HTMLInputElement;
+const title = document.querySelector('#title') as HTMLInputElement;
 
-
+//whole form
 const disableElementsHandler = (): void => {
   Array.from(adForm.children).forEach(button => {
     button.classList.add('ad-form--disabled');
@@ -27,11 +28,28 @@ const enableElementsHandler = (): void => {
 
 disableElementsHandler();
 
+
 window.addEventListener('load', () => {
   address.value = `${LATITUDE}, ${LONGITUDE}`;
   address.setAttribute('disabled', '');
   enableElementsHandler();
 });
+
+//User's add
+title.addEventListener('input', () => {
+  const valueLength = title.value.length;
+
+  if (valueLength < MIN_TITLE_LENGTH) {
+    title.setCustomValidity('Ещё ' + (MIN_TITLE_LENGTH - valueLength) + ' симв.');
+  } else if (valueLength > MAX_TITLE_LENGTH) {
+    title.setCustomValidity('Удалите лишние ' + (valueLength - MAX_TITLE_LENGTH) + ' симв.');
+  } else {
+    title.setCustomValidity('');
+  }
+
+  title.reportValidity();
+});
+
 
 type.addEventListener('click', () => {
   switch (type.value) {
@@ -57,6 +75,16 @@ type.addEventListener('click', () => {
       break;
   }
 })
+
+price.addEventListener('input', () => {
+  const val = price.value
+
+  if (isNaN(Number(val))) {
+    price.setCustomValidity('Цена за ночь должна быть числом');
+  }
+
+  price.reportValidity();
+});
 
 const timeLeave = (time1: HTMLInputElement, time2: HTMLInputElement): void => {
   time1.addEventListener('change', () => {
